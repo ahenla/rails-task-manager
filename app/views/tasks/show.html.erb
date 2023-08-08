@@ -1,15 +1,22 @@
 <div class="container">
   <h1>Task</h1>
-  <h2><%= @task.title %></h2>
-  <p><%= @task.details %></p>
-  <p><%= @task.completed %></p>
-   <%=
-      link_to 'delete',
-      task_path(@task),
-      data: {turbo_method: :delete, turbo_confirm: 'Are you sure'}
-    %>
-    <div>
+  <h3><%= @task.title %></h3>
+  <p class='fs-4'>-<%= @task.details %></p>
+  <span class='my-2'>completed
+        <% if @task.completed %>
+          <i class="fa-regular fa-square-check"></i>
+        <% else %>
+          <i class="fa-regular fa-square"></i>
+        <% end %>
+        </span>
+    <div class="container my-2">
+    <%= link_to "edit", edit_task_path(@task), class: "btn btn-outline-warning"  %>
       <%=
-      link_to 'home', tasks_path%>
+          link_to 'delete',
+          task_path(@task),
+          class: "btn btn-outline-danger",
+          data: {turbo_method: :delete, turbo_confirm: 'Are you sure'}
+      %>
+      <%=link_to 'home', tasks_path, class: 'btn btn-outline-primary'%>
     </div>
 </div>
